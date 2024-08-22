@@ -28,7 +28,7 @@ public:
                 ListNode* tmp=head;
                 current_ptr=head->next;
                 head=head->next;
-                //delete tmp;
+                delete tmp;
             }
             else
             {
@@ -40,7 +40,7 @@ public:
  
                 ListNode* tmp = current_ptr;
                 current_ptr=current_ptr->next;
-                //delete tmp;
+                delete tmp;
             }
         }
         
