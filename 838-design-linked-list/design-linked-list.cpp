@@ -12,14 +12,14 @@ public:
     
 
     MyLinkedList() {
-        //cout<<"create node"<<this->val<<endl;
+        ////cout<<"create node"<<this->val<<endl;
         
     }
     MyLinkedList(int val,MyLinkedList* next,MyLinkedList* prev) {
         this->val=val;
         this->next=next;
         this->prev=prev;
-        //cout<<"create node"<<this->val<<endl;
+        ////cout<<"create node"<<this->val<<endl;
     }
     
     void travel()
@@ -28,7 +28,7 @@ public:
         MyLinkedList* current_ptr=this;
         while(1)
         {
-            cout<<current_ptr->val<<" ";
+            //cout<<current_ptr->val<<" ";
             if(current_ptr->next!=nullptr)
             {
                 current_ptr=current_ptr->next;
@@ -40,13 +40,13 @@ public:
         }
 
 
-        cout<<endl;
+        //cout<<endl;
 
-        cout<<"prevs"<<endl;
+        //cout<<"prevs"<<endl;
         current_ptr=this;
         while(1)
         {
-            if(current_ptr->prev!=nullptr)   cout<<current_ptr->prev->val<<" ";
+            if(current_ptr->prev!=nullptr)   //cout<<current_ptr->prev->val<<" ";
             if(current_ptr->next!=nullptr)
             {
                 current_ptr=current_ptr->next;
@@ -56,7 +56,7 @@ public:
                 break;
             }
         }
-        cout<<endl;
+        //cout<<endl;
         */
         
     }
@@ -65,31 +65,31 @@ public:
     int get(int index) {
         MyLinkedList* current_ptr=this;
 
-        cout<<"start get, cur="<<current_ptr->val<<endl;
+        //cout<<"start get, cur="<<current_ptr->val<<endl;
         if(this->val==-69)
         {
-            cout<<"end get and get nothing"<<endl;
+            //cout<<"end get and get nothing"<<endl;
             return -1;
         }
         for(int i=0;i<index;i++)
         {
             if(current_ptr->next!=nullptr)
             {
-                cout<<current_ptr->val<<" ";
+                //cout<<current_ptr->val<<" ";
                 current_ptr=current_ptr->next;
                 
             }
             else
             {
-                cout<<"end get and get nothing"<<endl;
-                travel();
+                //cout<<"end get and get nothing"<<endl;
+                //travel();
                 return -1;
             }
         }
-        cout<<endl;
+        //cout<<endl;
 
-        cout<<"end get"<<endl;
-        travel();
+        //cout<<"end get"<<endl;
+        //travel();
         return current_ptr->val;
         
     }
@@ -100,8 +100,8 @@ public:
         if(this->val==-69)
         {
             this->val=val;
-            cout<<"end head"<<endl;
-            travel();
+            //cout<<"end head"<<endl;
+            //travel();
             return;
         }
 
@@ -116,8 +116,8 @@ public:
             this->next->next->prev=oldhead;
         }     
 
-        cout<<"end head"<<endl;
-        travel();
+        //cout<<"end head"<<endl;
+        //travel();
     }
     
     void addAtTail(int val) {
@@ -126,8 +126,8 @@ public:
         if(this->val==-69)
         {
             addAtHead(val);
-            cout<<"end tail"<<endl;
-            travel();
+            //cout<<"end tail"<<endl;
+            //travel();
             return;
         }
 
@@ -142,23 +142,23 @@ public:
                 break;
             }
         }
-        //cout<<endl;
+        ////cout<<endl;
         MyLinkedList* newnode=new MyLinkedList(val,nullptr,current_ptr);
         current_ptr->next=newnode;
 
-        cout<<"end tail"<<endl;
-        travel();
+        //cout<<"end tail"<<endl;
+        //travel();
         
     }
     
     void addAtIndex(int index, int val) {
         MyLinkedList* current_ptr=this;
-        //cout<<"start of addat"<<endl;
+        ////cout<<"start of addat"<<endl;
 
         if(index==0)
         {
             addAtHead(val);
-            cout<<"end addat"<<endl;
+            //cout<<"end addat"<<endl;
         }
 
         for(int i=0;i<index;i++)
@@ -166,26 +166,26 @@ public:
 
             if(current_ptr->next!=nullptr)
             {
-                 //cout<<current_ptr->val<<" ";
+                 ////cout<<current_ptr->val<<" ";
                 current_ptr=current_ptr->next;
             }
             else if(i==index-1)
             {
                 MyLinkedList* newnode=new MyLinkedList(val,nullptr,current_ptr);
                 current_ptr->next=newnode;
-                cout<<"end addat"<<endl;
-                travel();
+                //cout<<"end addat"<<endl;
+                //travel();
 
                 return;//very very bad
             }
             else
             {
-                cout<<"end addat"<<"i="<<i<<endl;
-        travel();
+                //cout<<"end addat"<<"i="<<i<<endl;
+        //travel();
                 return ;
             }
         }
-        //cout<<"current"<<current_ptr->val<<endl;
+        ////cout<<"current"<<current_ptr->val<<endl;
         MyLinkedList* newnode=new MyLinkedList(val,current_ptr,current_ptr->prev);
         if(current_ptr->prev!=nullptr)
         {
@@ -194,11 +194,11 @@ public:
         current_ptr->prev=newnode;
 
         current_ptr=this;
-        ////cout<<"test add at"<<endl;
+        //////cout<<"test add at"<<endl;
 
 
-        cout<<"end addat"<<endl;
-        travel();
+        //cout<<"end addat"<<endl;
+        //travel();
         
     }
     
@@ -211,8 +211,8 @@ public:
                 this->val=this->next->val;
                 this->prev=nullptr;
                 this->next=this->next->next;
-                cout<<"end delete"<<endl;
-                travel();
+                //cout<<"end delete"<<endl;
+                //travel();
                 return ;
             }
             else
@@ -220,7 +220,7 @@ public:
                 this->next=nullptr;
                 this->val=-69;
                 this->prev=nullptr;
-                cout<<"delete everything!!! nothing left"<<endl;
+                //cout<<"delete everything!!! nothing left"<<endl;
                 return ;
             }
         }
@@ -234,25 +234,25 @@ public:
             else
             {
 
-                cout<<"end delete"<<endl;
-                travel();
+                //cout<<"end delete"<<endl;
+                //travel();
                 return ;
             }
         }
 
         if(current_ptr->prev!=nullptr)
         {
-        cout<<"deleting"<<current_ptr->val<<endl;
-        travel();
-        cout<<"prev="<<current_ptr->prev->val<<endl;
+        //cout<<"deleting"<<current_ptr->val<<endl;
+        //travel();
+        //cout<<"prev="<<current_ptr->prev->val<<endl;
         current_ptr->prev->next=current_ptr->next;
         }
         if(current_ptr->next!=nullptr)
         {
             current_ptr->next->prev=current_ptr->prev;
         }
-        cout<<"end delete"<<endl;
-        travel();
+        //cout<<"end delete"<<endl;
+        //travel();
         return;
     }
 };
