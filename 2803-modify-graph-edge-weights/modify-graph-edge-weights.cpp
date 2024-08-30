@@ -1,96 +1,76 @@
-#include "bits/stdc++.h"
-using namespace std;
 class Solution {
-public:
-    vector<vector<int>> modifiedGraphEdges(int n, vector<vector<int>>& edges, int source, int destination, int target) {
-        
-        long long currentDis=dijkstra(n,edges,source,destination);
+    int getMinimumDistance(int n, vector<vector<int>> &edges, int source, int destination){
+        vector<vector<pair<int, int>>> adj(n);
+        for(vector<int> &edge: edges){
+            int a = edge[0];
+            int b = edge[1];
+            int w = edge[2];
 
-        if(currentDis<target)
-        {
-            return {};
+            if(w != -1){
+                adj[a].push_back({b, w});
+                adj[b].push_back({a, w});
+            }
         }
 
-        bool matches=(currentDis==target);
+        vector<int> minimumDistance(n, INT_MAX);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        
+        minimumDistance[source] = 0;
+        pq.push({minimumDistance[source], source});
 
+        while(!pq.empty()){
+            int node, nodeDistance;
+            tie(nodeDistance, node) = pq.top();
+            pq.pop();
 
-
-        //for each edge ==-1 adjust it to 1 then dijkstra
-        //if new distance <= target then set this edge to match target and others be 2e9
-        for(auto &edge:edges)
-        {
-            if(edge[2]!=-1)
-            {
+            if(nodeDistance != minimumDistance[node]){
                 continue;
             }
 
-            if(matches)
-            {
-                edge[2]=2e9;
-            }
-            else
-            {
-                edge[2]=1;
-                long long newDis=dijkstra(n,edges,source,destination);
-                if(newDis<=target)
-                {
-                    edge[2]+=(target-newDis);
-                    matches=true;
+            for(auto edge: adj[node]){
+                int neighbour, weight;
+                tie(neighbour, weight) = edge;
+                if(minimumDistance[neighbour] > minimumDistance[node] + weight){
+                    minimumDistance[neighbour] = minimumDistance[node] + weight;
+                    pq.push({minimumDistance[neighbour], neighbour});
                 }
             }
         }
-        if(matches==false)
-        {
-            return {};
+
+        return minimumDistance[destination];
+    }
+    const int MAX_EDGE_WEIGHT = 2e9;
+    vector<vector<int>> fill(vector<vector<int>> &edges){
+        for(vector<int> &edge: edges){
+            if(edge[2] == -1){
+                edge[2] = MAX_EDGE_WEIGHT;
+            }
         }
-
-
         return edges;
     }
-
-
-    long long dijkstra(int n, vector<vector<int>>& edges, int source, int destination) {
-        vector<long long> distance(n, LLONG_MAX);
-        vector<bool> visited(n, false);
-        vector<vector<pair<int, long long>>> connected(n);
-
-        for (auto& edge : edges) {
-            if (edge[2] == -1) continue;
-            connected[edge[0]].push_back({edge[1], edge[2]});
-            connected[edge[1]].push_back({edge[0], edge[2]});
+public:
+    vector<vector<int>> modifiedGraphEdges(int n, vector<vector<int>>& edges, int source, int destination, int target) {
+        int distance = getMinimumDistance(n, edges, source, destination);
+        if(distance < target){
+            return vector<vector<int>>();
+        }
+        else if(distance == target){
+            return fill(edges);
         }
 
-        priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<>> pq;
-        pq.push({0, source});
-        distance[source] = 0;
-
-        while (!pq.empty()) {
-            auto [dist, u] = pq.top();
-            pq.pop();
-
-            if (visited[u]) continue;
-            visited[u] = true;
-
-            for (auto& [v, weight] : connected[u]) {
-                if (distance[u] + weight < distance[v]) {
-                    distance[v] = distance[u] + weight;
-                    pq.push({distance[v], v});
+        for(vector<int> &edge: edges){
+            if(edge[2] == -1){
+                edge[2] = 1;
+                int distance = getMinimumDistance(n, edges, source, destination);
+                if(distance == target){
+                    return fill(edges);
+                }
+                else if(distance < target){
+                    edge[2] += target - distance;
+                    return fill(edges);
                 }
             }
         }
-
-        return distance[destination] == LLONG_MAX ? 2e9 : distance[destination];
-    }
-
-    long long min(long long a,long long b)
-    {
-        if(a<b)
-        {
-            return a;
-        }
-        else
-        {
-            return b;
-        }
+        return vector<vector<int>>();
     }
 };
