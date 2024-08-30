@@ -1,94 +1,96 @@
+#include "bits/stdc++.h"
+using namespace std;
 class Solution {
 public:
-    const int INF = 2e9;
+    vector<vector<int>> modifiedGraphEdges(int n, vector<vector<int>>& edges, int source, int destination, int target) {
+        
+        long long currentDis=dijkstra(n,edges,source,destination);
 
-    vector<vector<int>> modifiedGraphEdges(int nodeCount,
-                                           vector<vector<int>>& edges,
-                                           int source, int destination,
-                                           int target) {
-        // Step 1: Compute the initial shortest distance from source to
-        // destination
-        long long currentShortestDistance =
-            runDijkstra(edges, nodeCount, source, destination);
+        if(currentDis<target)
+        {
+            return {};
+        }
 
-        // If the current shortest distance is less than the target, return an
-        // empty result
-        if (currentShortestDistance < target) return {};
+        bool matches=(currentDis==target);
 
-        bool matchesTarget = (currentShortestDistance == target);
 
-        // Step 2: Iterate through each edge to adjust its weight if necessary
-        for (vector<int>& edge : edges) {
-            // Skip edges that already have a positive weight
-            if (edge[2] > 0) continue;
 
-            // Set edge weight to a large value if current distance matches
-            // target else set to 1
-            edge[2] = matchesTarget ? INF : 1;
+        //for each edge ==-1 adjust it to 1 then dijkstra
+        //if new distance <= target then set this edge to match target and others be 2e9
+        for(auto &edge:edges)
+        {
+            if(edge[2]!=-1)
+            {
+                continue;
+            }
 
-            // Step 3: If current shortest distance does not match target
-            if (!matchesTarget) {
-                // Compute the new shortest distance with the updated edge
-                // weight
-                long long newDistance =
-                    runDijkstra(edges, nodeCount, source, destination);
-                // If the new distance is within the target range, update edge
-                // weight to match target
-                if (newDistance <= target) {
-                    matchesTarget = true;
-                    edge[2] += target - newDistance;
+            if(matches)
+            {
+                edge[2]=2e9;
+            }
+            else
+            {
+                edge[2]=1;
+                long long newDis=dijkstra(n,edges,source,destination);
+                if(newDis<=target)
+                {
+                    edge[2]+=(target-newDis);
+                    matches=true;
                 }
             }
         }
+        if(matches==false)
+        {
+            return {};
+        }
 
-        // Return modified edges if the target distance is achieved, otherwise
-        // return an empty result
-        return matchesTarget ? edges : vector<vector<int>>{};
+
+        return edges;
     }
 
-    // Dijkstra's algorithm to find the shortest path distance
-    long long runDijkstra(const vector<vector<int>>& edges, int nodeCount,
-                          int sourceNode, int destinationNode) {
-        // Step 1: Initialize adjacency matrix and distance arrays
-        vector<vector<long long>> adjMatrix(nodeCount,
-                                            vector<long long>(nodeCount, INF));
-        vector<long long> minDistance(nodeCount, INF);
-        vector<bool> visited(nodeCount, false);
 
-        // Set the distance to the source node as 0
-        minDistance[sourceNode] = 0;
+    long long dijkstra(int n, vector<vector<int>>& edges, int source, int destination) {
+        vector<long long> distance(n, LLONG_MAX);
+        vector<bool> visited(n, false);
+        vector<vector<pair<int, long long>>> connected(n);
 
-        // Step 2: Fill the adjacency matrix with edge weights
-        for (const vector<int>& edge : edges) {
-            if (edge[2] != -1) {
-                adjMatrix[edge[0]][edge[1]] = edge[2];
-                adjMatrix[edge[1]][edge[0]] = edge[2];
-            }
+        for (auto& edge : edges) {
+            if (edge[2] == -1) continue;
+            connected[edge[0]].push_back({edge[1], edge[2]});
+            connected[edge[1]].push_back({edge[0], edge[2]});
         }
 
-        // Step 3: Perform Dijkstra's algorithm
-        for (int i = 0; i < nodeCount; ++i) {
-            // Find the nearest unvisited node
-            int nearestUnvisitedNode = -1;
-            for (int j = 0; j < nodeCount; ++j) {
-                if (!visited[j] &&
-                    (nearestUnvisitedNode == -1 ||
-                     minDistance[j] < minDistance[nearestUnvisitedNode])) {
-                    nearestUnvisitedNode = j;
+        priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<>> pq;
+        pq.push({0, source});
+        distance[source] = 0;
+
+        while (!pq.empty()) {
+            auto [dist, u] = pq.top();
+            pq.pop();
+
+            if (visited[u]) continue;
+            visited[u] = true;
+
+            for (auto& [v, weight] : connected[u]) {
+                if (distance[u] + weight < distance[v]) {
+                    distance[v] = distance[u] + weight;
+                    pq.push({distance[v], v});
                 }
             }
-            // Mark the nearest node as visited
-            visited[nearestUnvisitedNode] = true;
-
-            // Update the minimum distance for each adjacent node
-            for (int v = 0; v < nodeCount; ++v) {
-                minDistance[v] =
-                    min(minDistance[v], minDistance[nearestUnvisitedNode] +
-                                            adjMatrix[nearestUnvisitedNode][v]);
-            }
         }
 
-        // Return the shortest distance to the destination node
-        return minDistance[destinationNode];
+        return distance[destination] == LLONG_MAX ? 2e9 : distance[destination];
+    }
+
+    long long min(long long a,long long b)
+    {
+        if(a<b)
+        {
+            return a;
+        }
+        else
+        {
+            return b;
+        }
     }
 };
