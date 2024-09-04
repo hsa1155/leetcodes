@@ -21,7 +21,7 @@ public:
 
 
         ListNode *ans=dummy->next;
-        //delete(dummy);
+        delete(dummy);
         return ans;
         
     }
