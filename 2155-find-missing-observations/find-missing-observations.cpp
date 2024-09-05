@@ -26,12 +26,9 @@ public:
             {
                 result[i]+=min(6-avg,remain);
                 remain-=min(6-avg,remain);
-                cout<<result[i]<<" ";
             }
         }
 
-
-        cout<<endl<<remain<<endl;
 
         return result;
 
