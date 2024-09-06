@@ -9,9 +9,9 @@ public:
             return "";
         }
 
-        int gcd=__gcd(str1.length(),str2.length());
+       
 
-        return str1.substr(0,gcd);
+        return str1.substr(0,gcd(str1.length(),str2.length()));
         
     }
 };
