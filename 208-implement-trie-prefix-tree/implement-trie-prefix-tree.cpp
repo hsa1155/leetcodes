@@ -68,7 +68,6 @@ public:
     }
     
     bool startsWith(string prefix) {
-        cout<<prefix<<endl;
         Trie* current=this;
         int len=prefix.length();
         bool flag=true;
