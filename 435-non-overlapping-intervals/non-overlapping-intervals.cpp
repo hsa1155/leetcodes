@@ -7,7 +7,7 @@ public:
         return a[1]<b[1];
     }
     int eraseOverlapIntervals(vector<vector<int>>& intervals) {
-        sort(intervals.begin(),intervals.end(),Solution::cmp);
+        sort(intervals.begin(),intervals.end(),cmp);
 
         int n=intervals.size();
         int end=intervals[0][1];
