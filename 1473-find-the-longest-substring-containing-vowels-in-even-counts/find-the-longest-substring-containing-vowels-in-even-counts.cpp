@@ -10,7 +10,7 @@ public:
         bitmask['i'-'a']=1<<2;
         bitmask['o'-'a']=1<<3;
         bitmask['u'-'a']=1<<4;
-        map<int,int> lastSeen;//first=xorvalue second=index
+        unordered_map<int,int> lastSeen;//first=xorvalue second=index
         lastSeen[0]=-1;
         int len=s.length();
         int xorvalue=0;
