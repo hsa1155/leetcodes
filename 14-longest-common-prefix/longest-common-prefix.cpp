@@ -19,7 +19,7 @@ public:
             {
                 current=strs[0][index];
             }
-            for(string str:strs)
+            for(string &str:strs)
             {
                 if(index>=str.length())
                 {
