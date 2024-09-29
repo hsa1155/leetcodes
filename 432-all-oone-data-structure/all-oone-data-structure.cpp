@@ -74,7 +74,6 @@ public:
 
     string getMaxKey()
     {
-        cout << currentMin << " " << currentMax << endl;
 
         if (level[currentMax].empty())
         {
@@ -88,8 +87,6 @@ public:
 
     string getMinKey()
     {
-        cout << currentMin << " " << currentMax << endl;
-
         if (level[currentMin].empty())
         {
             return "";
