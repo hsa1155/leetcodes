@@ -15,7 +15,6 @@ public:
                 tmp.append(to_string(grid[i][j]));
                 tmp.append("/");
             }
-            cout<<tmp<<endl;
             mp[tmp]++;
         }
 
@@ -27,7 +26,7 @@ public:
                 tmp.append(to_string(grid[i][j]));
                 tmp.append("/");
             }
-            cout<<tmp<<endl;
+        
             count+=mp[tmp];
         }
 
