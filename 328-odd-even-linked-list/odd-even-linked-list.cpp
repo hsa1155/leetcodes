@@ -10,8 +10,7 @@ public:
         {
             return head;
         }
-        ListNode* odd=head;
-        ListNode* currentOdd=odd;
+        ListNode* currentOdd=head;
         ListNode* even=head->next;
         ListNode* currentEven=even;
         ListNode* current=head->next->next;
@@ -38,9 +37,6 @@ public:
         }
         currentOdd->next=even;
 
-        return head;
-        
-
-        
+        return head;  
     }
 };
