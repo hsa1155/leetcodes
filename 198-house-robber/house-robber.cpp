@@ -5,14 +5,18 @@ class Solution {
 public:
     int rob(vector<int>& nums) {
         int n=nums.size();
-        vector<int> dp(n+2,0);
+        int current;
+        int first=0;
+        int second=0;
 
         for(int i=n-1;i>=0;i--)
         {
-            dp[i]=max(nums[i]+dp[i+2],dp[i+1]);
+            current=max(nums[i]+second,first);
+            second=first;
+            first=current;
         }   
 
-        return dp[0];
+        return current;
 
         
     }
