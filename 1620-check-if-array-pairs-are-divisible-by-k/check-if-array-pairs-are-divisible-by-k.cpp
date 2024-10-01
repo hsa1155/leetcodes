@@ -11,7 +11,7 @@ public:
             mp[(x % k + k) % k]++;
         }
 
-        for(pair<const int,int> pr:mp)
+        for(pair<const int,int> &pr:mp)
         {
             if(pr.first==0)
             {
