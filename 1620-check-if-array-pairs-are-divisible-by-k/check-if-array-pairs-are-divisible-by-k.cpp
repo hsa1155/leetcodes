@@ -4,7 +4,7 @@ using namespace std;
 class Solution {
 public:
     bool canArrange(vector<int>& arr, int k) {
-        map<int,int> mp;
+        unordered_map<int,int> mp;
 
         for(int &x:arr)
         {
