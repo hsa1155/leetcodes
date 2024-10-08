@@ -37,7 +37,6 @@ public:
 
             current++;
         }
-        cout<<s<<endl;
         return ans;
         
         
