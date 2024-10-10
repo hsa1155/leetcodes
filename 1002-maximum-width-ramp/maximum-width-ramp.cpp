@@ -21,10 +21,10 @@ public:
                 // Pop the index since it's already processed
                 indicesStack.pop();
             }
-            if(indicesStack.empty())
-            {
-                break;
-            }
+            //if(indicesStack.empty())
+            //{
+            //    break;
+            //}
         }
 
         return maxWidth;
