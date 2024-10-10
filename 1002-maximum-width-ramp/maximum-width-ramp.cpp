@@ -20,11 +20,12 @@ public:
                 maxWidth = max(maxWidth, j - indicesStack.top());
                 // Pop the index since it's already processed
                 indicesStack.pop();
+                if(indicesStack.empty())
+            {
+                return maxWidth;
             }
-            //if(indicesStack.empty())
-            //{
-            //    break;
-            //}
+            }
+            
         }
 
         return maxWidth;
