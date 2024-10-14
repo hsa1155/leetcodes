@@ -13,7 +13,6 @@ public:
 
         for(int i=0;i<k;i++)
         {
-            cout<<pq.top()<<endl;
             ans+=pq.top();
             int tmp=ceil((double)pq.top()/3.0);
             pq.pop();
