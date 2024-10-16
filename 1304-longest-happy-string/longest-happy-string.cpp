@@ -17,13 +17,13 @@ public:
                     {
                         if(b>=c&&b>0)
                         {
-                            ans=ans+'b';
+                            ans.append("b");
                             b--;
                             index++;
                         }
                         else if(c>=b&&c>0)
                         {
-                            ans=ans+'c';
+                            ans.append("c");
                             c--;
                             index++;
                         }
@@ -34,7 +34,7 @@ public:
                     }
                     else
                     {
-                        ans=ans+'a';
+                        ans.append("a");
                         a--;
                         index++;
                     }
@@ -42,7 +42,7 @@ public:
                 }
                 else
                 {
-                    ans=ans+'a';
+                    ans.append("a");
                     a--;
                     index++;
                 }
@@ -56,13 +56,13 @@ public:
                     {
                         if(a>=c&&a>0)
                         {
-                            ans=ans+'a';
+                            ans.append("a");
                             a--;
                             index++;
                         }
                         else if(c>=a&&c>0)
                         {
-                            ans=ans+'c';
+                            ans.append("c");
                             c--;
                             index++;
                         }
@@ -73,7 +73,7 @@ public:
                     }
                     else
                     {
-                        ans=ans+'b';
+                        ans.append("b");
                         b--;
                         index++;
                     }
@@ -81,7 +81,7 @@ public:
                 }
                 else
                 {
-                    ans=ans+'b';
+                    ans.append("b");
                     b--;
                     index++;
                 }
@@ -94,13 +94,13 @@ public:
                     {
                         if(a>=b&&a>0)
                         {
-                            ans=ans+'a';
+                            ans.append("a");
                             a--;
                             index++;
                         }
                         else if(b>=a&&b>0)
                         {
-                            ans=ans+'b';
+                            ans.append("b");
                             b--;
                             index++;
                         }
@@ -111,7 +111,7 @@ public:
                     }
                     else
                     {
-                        ans=ans+'c';
+                        ans.append("c");
                         c--;
                         index++;
                     }
@@ -119,7 +119,7 @@ public:
                 }
                 else
                 {
-                    ans=ans+'c';
+                    ans.append("c");
                     c--;
                     index++;
                 }
