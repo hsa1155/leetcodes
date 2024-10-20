@@ -98,6 +98,10 @@ public:
                 
             }
         }
+        if(st.size()!=1)
+        {
+            cout<<1/0<<endl;
+        }
         if(st.top()=='t')
         {
             return true;
