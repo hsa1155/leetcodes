@@ -7,7 +7,6 @@ public:
 
         for(char ch:expression)
         {
-            cout<<ch<<endl;
             if(ch!=')')
             {
                 st.push(ch);
