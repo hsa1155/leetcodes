@@ -16,7 +16,6 @@ private:
         // Try every possible substring starting from 'start'
         for (int end = start + 1; end <= s.size(); ++end) {
             string substring = s.substr(start, end - start);
-            cout<<substring<<endl;
             // If the substring is unique
             if (seen.find(substring) == seen.end()) {
                 // Add the substring to the seen set
