@@ -33,7 +33,6 @@ public:
             tmp=tmp^left1^left2^right1^right2;
             if(tmp!=0)
             {
-                cout<<current1->val<<" "<<left1<<" "<<right1<<" "<<left2<<" "<<" "<<right2<<endl;
                 return false;
                 //childern not equal
             }
