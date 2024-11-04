@@ -13,7 +13,7 @@ public:
             {
                 if(current!='1')
                 {
-                    ans+=to_string(count);
+                    ans+=(char)('0'+count);
                     ans+=current;
                 }
                 current=ch;
@@ -24,7 +24,7 @@ public:
                 count++;
             }
         }
-        ans+=to_string(count);
+        ans+=(char)('0'+count);
         ans+=current;
 
         return ans;
