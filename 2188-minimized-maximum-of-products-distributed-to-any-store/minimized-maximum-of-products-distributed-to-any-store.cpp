@@ -15,12 +15,22 @@ public:
                    (long long)a.second * b.first;
         };
 
-        priority_queue<pair<int,int>,vector<pair<int,int>>,decltype(compareTypeStorePairs)> pq;
+                // Helper array - useful for the efficient initialization of the
+        // priority queue
+        vector<pair<int, int>> typeStorePairsArray;
 
-        for(int x:quantities)
-        {
-            pq.push({x,1});
+        // Push all product types to the array, after assigning one store to
+        // each of them
+        for (int i = 0; i < m; i++) {
+            typeStorePairsArray.push_back({quantities[i], 1});
         }
+
+        // Initialize the priority queue
+        priority_queue<pair<int, int>, vector<pair<int, int>>,
+                       decltype(compareTypeStorePairs)>
+            pq(typeStorePairsArray.begin(),
+                           typeStorePairsArray.begin() + m);
+
 
         for(int i=0;i<n-m;i++)
         {
