@@ -6,6 +6,7 @@ public:
     int minimizedMaximum(int n, vector<int> &quantities)
     {
         int m=quantities.size();
+        pair<int,int> current;
         // Define a custom comparator for the priority queue
         // It sorts the pairs based on the ratio of their first to their second
         // element
@@ -15,26 +16,16 @@ public:
                    (long long)a.second * b.first;
         };
 
-                // Helper array - useful for the efficient initialization of the
-        // priority queue
-        vector<pair<int, int>> typeStorePairsArray;
+        priority_queue<pair<int,int>,vector<pair<int,int>>,decltype(compareTypeStorePairs)> pq;
 
-        // Push all product types to the array, after assigning one store to
-        // each of them
-        for (int i = 0; i < m; i++) {
-            typeStorePairsArray.push_back({quantities[i], 1});
+        for(int &x:quantities)
+        {
+            pq.push({x,1});
         }
-
-        // Initialize the priority queue
-        priority_queue<pair<int, int>, vector<pair<int, int>>,
-                       decltype(compareTypeStorePairs)>
-            pq(typeStorePairsArray.begin(),
-                           typeStorePairsArray.begin() + m);
-
 
         for(int i=0;i<n-m;i++)
         {
-            pair<int,int> current=pq.top();
+            current=pq.top();
             pq.pop();
             current.second++;
             pq.push(current);
