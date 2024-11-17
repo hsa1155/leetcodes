@@ -3,59 +3,37 @@ using namespace std;
 class Solution
 {
 public:
-    int minSubArrayLen(int target, vector<int> &nums)
+    int minSubArrayLen(int k, vector<int> &nums)
     {
-        int start = 0;
-        int end = 0;
-        int minLength = INT_MAX;
-        int currentSum = 0;
-        int n = nums.size();
+        long long int current=0;
+        int ans=INT_MAX;
+        int n=nums.size();
+        int left=0;
 
-        for (int i = 0; i < n; i++)
+        for(int i=0;i<n;i++)
         {
-           currentSum+=nums[i];
-
-            if(currentSum< target )
-            {   
-                continue;
-            }
-            else
+            current+=nums[i];
+            cout<<current<<current-nums[left]<<endl;
+            while (current-nums[left]>=k&&left<i)
             {
-
-                while(start<i)
-                {
-                    if(currentSum-nums[start]>target)
-                    {
-                        currentSum-=nums[start++];
-                    }
-                    else if(currentSum-nums[start]==target)
-                    {
-                        currentSum-=nums[start++];
-                        minLength=min(minLength,i-start+1);
-                    }
-                    else
-                    {
-                        minLength=min(minLength,i-start+1);
-                        currentSum-=nums[start++];
-                        break;
-                    }
-                }
-                if(start==i)
-                {
-                    currentSum=nums[i];
-                    if(currentSum>=target)
-                    {
-                        minLength=min(minLength,1);
-                    }
-
-                }
+                current-=nums[left++];
+                cout<<current<<endl;
             }
 
-
-
+            if(current>=k)
+            {
+                ans=min(ans,i-left+1);
+            }
+            
         }
-        if(minLength==INT_MAX) return 0;
 
-        return minLength;
+        if(ans==INT_MAX)
+        {
+            return 0;
+        }
+        else
+        {
+            return ans;
+        }
     }
 };
