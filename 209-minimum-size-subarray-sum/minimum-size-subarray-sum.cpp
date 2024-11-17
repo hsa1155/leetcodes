@@ -13,11 +13,11 @@ public:
         for(int i=0;i<n;i++)
         {
             current+=nums[i];
-            cout<<current<<current-nums[left]<<endl;
+            //cout<<current<<current-nums[left]<<endl;
             while (current-nums[left]>=k&&left<i)
             {
                 current-=nums[left++];
-                cout<<current<<endl;
+                //cout<<current<<endl;
             }
 
             if(current>=k)
