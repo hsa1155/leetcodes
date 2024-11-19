@@ -37,10 +37,6 @@ public:
 
             if (mp[nums[left]] == 1)
             {
-                if (duplicate.front() != nums[left])
-                {
-                    cout << "queue bugs! " << duplicate.front() << " " << nums[left] << endl;
-                }
                 duplicate.pop();
                 if (duplicate.empty())
                 {
