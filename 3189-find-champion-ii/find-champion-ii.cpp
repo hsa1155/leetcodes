@@ -20,8 +20,6 @@ public:
                 ans=i;
             }
         }
-
-        // If more than one champion, return -1 else return the team number.
         return ans;
     }
 };
