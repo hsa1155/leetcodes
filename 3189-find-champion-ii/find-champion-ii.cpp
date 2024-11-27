@@ -1,23 +1,27 @@
+#include "bits/stdc++.h"
+using namespace std;
 class Solution {
 public:
     int findChampion(int n, vector<vector<int>>& edges) {
-        vector<int> indegree(n, 0);
-        // Store the indegree of each team.
-        for (auto edge : edges) {
-            indegree[edge[1]]++;
+        vector<int> strong(n, 0);
+
+        for (vector<int> &edge : edges) {
+            strong[edge[1]]++;
         }
 
-        int champ = -1, champCount = 0;
+        int ans=-1;
         for (int i = 0; i < n; i++) {
-            // If the team can be chamption, store the number and count of such
-            // teams.
-            if (indegree[i] == 0) {
-                champCount++;
-                champ = i;
+
+            if (strong[i] == 0) {
+                if(ans!=-1)
+                {
+                    return -1;
+                }
+                ans=i;
             }
         }
 
         // If more than one champion, return -1 else return the team number.
-        return champCount > 1 ? -1 : champ;
+        return ans;
     }
 };
