@@ -32,9 +32,7 @@ class Solution:
         # Reverse the result since DFS gives us the path in reverse
         result.reverse()
 
-        # Construct the result pairs
-        pairedResult = [
+
+        return [
             [result[i - 1], result[i]] for i in range(1, len(result))
         ]
-
-        return pairedResult
