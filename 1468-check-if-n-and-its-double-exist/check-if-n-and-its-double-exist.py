@@ -1,5 +1,5 @@
 class Solution:
-    def checkIfExist(self, arr: list[int]) -> bool:
+    def checkIfExist(self, arr: List[int]) -> bool:
         st=set()
 
         for i in arr:
