@@ -1,5 +1,5 @@
 class Solution:
-    def continuousSubarrays(self, nums: List[int]) -> int:
+    def continuousSubarrays(self, nums: list[int]) -> int:
         right = left = 0
         window_len = total = 0
 
