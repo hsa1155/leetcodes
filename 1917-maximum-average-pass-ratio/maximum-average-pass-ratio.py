@@ -12,12 +12,4 @@ class Solution:
             c[0]=-((c[1][0]+1)/(c[1][1]+1)-(c[1][0]/c[1][1]))
             heapq.heappush(maxheap,c)
 
-        total=0     
-        for c in maxheap:
-            total+=(c[1][0]/c[1][1])
-        
-        total/=len(classes)
-
-
-        return total
-        
+        return sum(c[1][0] / c[1][1] for c in maxheap) / len(classes)
