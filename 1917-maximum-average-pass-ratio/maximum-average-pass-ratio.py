@@ -13,8 +13,7 @@ class Solution:
             heapq.heappush(maxheap,c)
 
         total=0     
-        while maxheap:
-            c=heapq.heappop(maxheap)
+        for c in maxheap:
             total+=(c[1][0]/c[1][1])
         
         total/=len(classes)
