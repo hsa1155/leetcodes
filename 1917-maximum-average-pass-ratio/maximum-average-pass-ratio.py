@@ -1,9 +1,9 @@
 import heapq
 class Solution:
     def maxAverageRatio(self, classes: list[list[int]], extraStudents: int) -> float:
-        maxheap=[]
-        for c in classes:
-            heapq.heappush(maxheap,  [-((c[0]+1)/(c[1]+1)-(c[0]/c[1])),c] )
+        maxheap=[[-((c[0]+1)/(c[1]+1)-(c[0]/c[1])),c] for c in classes]
+        
+        heapq.heapify(maxheap)
         
         for i in range(extraStudents):
             c=heapq.heappop(maxheap)
