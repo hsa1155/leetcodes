@@ -17,12 +17,12 @@ class Solution:
                 stack.append(current.right)
             
             if(len(stack)==level):
+                left, right = 0, level - 1
                 level*=4
-                reverse=stack.copy()
-                while reverse:
-                    reverse[0].val,reverse[-1].val=reverse[-1].val,reverse[0].val
-                    reverse.pop()
-                    reverse.popleft()
+                while left < right:
+                    stack[left].val,stack[right].val=stack[right].val,stack[left].val
+                    left+=1
+                    right-=1
 
         return root
         
