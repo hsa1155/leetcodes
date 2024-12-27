@@ -2,7 +2,7 @@
 from collections import *
 import math
 class Solution:
-    def maxScoreSightseeingPair(self, values: list[int]) -> int:
+    def maxScoreSightseeingPair(self, values: List[int]) -> int:
         if(len(values)==2):
             return values[0]+values[1]-1
         
