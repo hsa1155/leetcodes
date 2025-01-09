@@ -6,7 +6,7 @@ public:
         int ans=0;
         int len=pref.size();
 
-        for(auto word:words)
+        for(auto &word:words)
         {
             if(pref==word.substr(0,len))
             {
