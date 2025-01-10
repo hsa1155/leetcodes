@@ -33,6 +33,7 @@ public:
                 if(mp['a'+i]>tmp[i])
                 {
                     is_universal=false;
+                    break;
                 }
             }
 
