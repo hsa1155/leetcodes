@@ -11,16 +11,13 @@ public:
         int m=grid.size();
         int n=grid[0].size();
         q.push({i,j});
+        visited[i][j]=true;
         int ans=0;
 
         while (!q.empty())
         {
             pair<int,int> current=q.front();
             q.pop();
-            if(visited[current.first][current.second])
-            {
-                continue;
-            }
             visited[current.first][current.second]=true;
             ans+=grid[current.first][current.second];
             
@@ -32,6 +29,7 @@ public:
                 if(nexti>=0&&nextj>=0&&nexti<m&&nextj<n&&!visited[nexti][nextj]&&grid[nexti][nextj]>0)
                 {
                     q.push({nexti,nextj});
+                    visited[nexti][nextj]=true;
                 }
             }
 
