@@ -4,6 +4,10 @@ public:
         int n = queries.size();
         vector<int> result(n);
         unordered_map<int, int> colorMap, ballMap;
+        /*
+ value of limit can be extremely large, with the range 1 <= limit <= 10^9. Contrarily, the queries only range from 1 <= n <= 10^5, where n is the length of queries. As we navigate through the queries, we can see that not all of the ball labels are guaranteed to be accessed by the queries, leading to unnecessary memory usage.
+
+        */
 
         // Iterate through queries
         for (int i = 0; i < n; i++) {
