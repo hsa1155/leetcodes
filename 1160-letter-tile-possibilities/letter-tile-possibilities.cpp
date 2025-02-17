@@ -1,29 +1,33 @@
 class Solution {
 public:
     int numTilePossibilities(string tiles) {
-        unordered_set<string> sequences;
-        vector<bool> used(tiles.length(), false);
+        // Track frequency of each uppercase letter (A-Z)
+        int charCount[26] = {0};
+        for (char c : tiles) {
+            charCount[c - 'A']++;
+        }
 
-        // Generate all possible sequences including empty string
-        generateSequences(tiles, "", used, sequences);
-
-        // Subtract 1 to exclude empty string from count
-        return sequences.size() - 1;
+        // Find all possible sequences using character frequencies
+        return findSequences(charCount);
     }
 
 private:
-    void generateSequences(string& tiles, string current, vector<bool>& used,
-                           unordered_set<string>& sequences) {
-        // Add current sequence to set
-        sequences.insert(current);
+    int findSequences(int charCount[26]) {
+        int totalCount = 0;
 
-        // Try adding each unused character to current sequence
-        for (int pos = 0; pos < tiles.length(); ++pos) {
-            if (!used[pos]) {
-                used[pos] = true;
-                generateSequences(tiles, current + tiles[pos], used, sequences);
-                used[pos] = false;
+        // Try using each available character
+        for (int pos = 0; pos < 26; pos++) {
+            if (charCount[pos] == 0) {
+                continue;
             }
+
+            // Add current character and recurse
+            totalCount++;
+            charCount[pos]--;
+            totalCount += findSequences(charCount);
+            charCount[pos]++;
         }
+
+        return totalCount;
     }
 };
